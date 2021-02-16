@@ -123,6 +123,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "Vanguard"
+    }
+  },
+  "defaultProject": "Vanguard",
+  "cli": {
+    "defaultCollection": "@ngrx/schematics"
+  }
 }

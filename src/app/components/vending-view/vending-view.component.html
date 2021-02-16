@@ -1,0 +1,15 @@
+<div *ngIf="vendingMachine">
+
+    No of cans: {{ vendingMachine.cans}}<br />
+    Price of one: {{ vendingMachine.unitPrice }}
+    <br />
+    <div *ngIf="vendingMachine.error">
+        {{vendingMachine.error}}
+    </div>
+</div>
+
+
+<div>
+    <button (click)="purchase(1)"> Purchase one</button>
+    <button (click)="refill(6)">Refill with 6</button>
+</div>
