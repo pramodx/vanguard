@@ -3,7 +3,8 @@ export class VendingMachine {
   unitPrice: number; // price of one can
   cans: number; // number of cans in stock
   message?: string; // Capture success msgs/errors if any
-  messageType?: number; // Success/Failure
+  notificationType?: number; // Success/Failure
+  lastEvent?: number;
 }
 
 export class Purchase {

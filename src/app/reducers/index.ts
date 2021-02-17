@@ -9,7 +9,7 @@ const initialiseState = (): VendingMachine => {
   return {
     cans: 1,
     unitPrice: 1.2,
-    funds: 0,
+    funds: 1.2,
   };
 };
 

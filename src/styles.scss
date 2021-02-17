@@ -5,6 +5,9 @@ $green: #008000;
 $yellow: #ffff00;
 $black: #000;
 $red: #c00;
+$grey: #e2e2e2;
+$lightred: #ffc4c4;
+$lightgreen: #d8ffd8;
 
 body {
   margin: 0;
@@ -68,6 +71,10 @@ h2 {
   background-color: $green;
 }
 
+.grey {
+  background-color: $grey;
+}
+
 .yellow {
   background-color: $yellow;
 }
@@ -127,4 +134,39 @@ h2 {
   height: 80px;
   margin-bottom: 10px;
   background: transparent url("/assets/soda-can-icon.svg") no-repeat center;
+}
+
+/* forms */
+.ng-invalid:not(form),
+.ng-invalid:not(form):active,
+.ng-invalid:not(form):focus {
+  outline: none;
+  border: 2px solid $red; /* red */
+}
+
+.notification {
+  padding: 20px;
+  margin-bottom: 20px;
+  width: 100%;
+  background-color: $white;
+
+  overflow-y: hidden;
+  max-height: 100px; /* approximate max height */
+
+  transition-property: all;
+  transition-duration: 0.5s;
+  transition-timing-function: cubic-bezier(0, 1, 0.5, 1);
+  &.close {
+    padding: 0;
+    max-height: 0;
+  }
+  &.success {
+    background-color: $lightgreen;
+    border: $green;
+  }
+  &.error {
+    background-color: $lightred;
+    border: $red;
+    color: $red;
+  }
 }
