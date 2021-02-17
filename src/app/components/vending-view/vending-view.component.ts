@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { select, Store } from '@ngrx/store';
 import { Observable, Subscription } from 'rxjs';
-import { map } from 'rxjs/operators';
+import { catchError, map } from 'rxjs/operators';
 
 // import { Vending } from './../../entities';
 // import { VendingState } from './../../reducers';
@@ -33,6 +33,10 @@ export class VendingViewComponent implements OnInit {
         })
       )
       .subscribe();
+  }
+
+  counter(i): number[] {
+    return new Array(i);
   }
 
   purchase(n): void {

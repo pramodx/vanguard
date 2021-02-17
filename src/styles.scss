@@ -1,1 +1,130 @@
-/* You can add global styles to this file, and also import other style files */
+$purple: #800080;
+$white: #fff;
+$orange: #ffab00;
+$green: #008000;
+$yellow: #ffff00;
+$black: #000;
+$red: #c00;
+
+body {
+  margin: 0;
+  padding: 0;
+  background: $purple;
+  font-family: "Roboto Condensed", sans-serif;
+}
+label {
+  display: inline-block;
+  min-width: 60px;
+  padding: 5px;
+}
+
+input {
+  max-width: 80px;
+  padding: 10px;
+  border-radius: 5px;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin: 0;
+  padding: 0;
+}
+
+h2 {
+  display: block;
+}
+
+/* generic classes */
+.right {
+  float: right;
+}
+.left {
+  float: left;
+}
+.btn {
+  border: none;
+  background: none;
+  padding: 10px;
+  text-transform: uppercase;
+  color: white;
+}
+
+.text-black {
+  color: $black;
+}
+
+.text-white {
+  color: $white;
+}
+.shadow {
+  box-shadow: 2px 2px 0 #333;
+}
+
+.green {
+  background-color: $green;
+}
+
+.yellow {
+  background-color: $yellow;
+}
+.red {
+  background-color: $red;
+}
+
+.container {
+  max-width: 996px;
+  margin: auto;
+  padding: 20px;
+}
+
+.row {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  justify-content: space-between;
+}
+
+.vending-machine {
+  position: relative;
+  display: flex;
+  flex-wrap: wrap;
+  margin: 10px;
+  padding: 20px;
+  min-height: 100px;
+  width: 100%;
+  background-color: $white;
+  border-radius: 10px;
+  .tag {
+    position: absolute;
+    padding: 5px;
+    bottom: 20px;
+    right: 20px;
+    transform: rotate(-10deg);
+  }
+}
+
+.control-panel {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  margin: 10px;
+  padding: 20px;
+  background-color: $orange;
+  border-radius: 10px;
+  form {
+    .group,
+    section {
+      margin-bottom: 10px;
+    }
+  }
+}
+.can {
+  width: 80px;
+  height: 80px;
+  margin-bottom: 10px;
+  background: transparent url("/assets/soda-can-icon.svg") no-repeat center;
+}

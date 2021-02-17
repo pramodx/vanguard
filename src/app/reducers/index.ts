@@ -10,7 +10,6 @@ const initialiseState = (): VendingMachine => {
     cans: 1,
     unitPrice: 1.2,
     funds: 0,
-    error: '',
   };
 };
 

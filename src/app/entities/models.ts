@@ -2,7 +2,8 @@ export class VendingMachine {
   funds: number; // money remaining in the vending machine
   unitPrice: number; // price of one can
   cans: number; // number of cans in stock
-  error: string; // Capture errors if any
+  message?: string; // Capture success msgs/errors if any
+  messageType?: number; // Success/Failure
 }
 
 export class Purchase {

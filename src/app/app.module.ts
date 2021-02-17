@@ -1,4 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
+import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
@@ -12,6 +13,7 @@ import { VendingViewComponent } from './components/';
   declarations: [AppComponent, VendingViewComponent],
   imports: [
     BrowserModule,
+    CommonModule,
     StoreModule.forRoot({ vm: reducer }),
     !environment.production ? StoreDevtoolsModule.instrument() : [],
   ],

@@ -1,15 +1,61 @@
-<div *ngIf="vendingMachine">
+<div class="container" *ngIf="vendingMachine">
+    <h2 class="text-white">Funds: ${{vendingMachine.funds}}</h2>
+    <div class="row">
+        <div class="vending-machine">
 
-    No of cans: {{ vendingMachine.cans}}<br />
-    Price of one: {{ vendingMachine.unitPrice }}
-    <br />
-    <div *ngIf="vendingMachine.error">
-        {{vendingMachine.error}}
+            <ng-container>
+                <div class="can" *ngFor="let can of counter(vendingMachine.cans)">
+                    {{can}}
+                </div>
+            </ng-container>
+            <div class="tag red text-white shadow">
+                Each Can {{vendingMachine.unitPrice | currency }}
+            </div>
+
+            <!-- <div *ngIf="vendingMachine">
+
+                No of cans: {{ vendingMachine.cans}}<br />
+                Price of one: {{ vendingMachine.unitPrice }}
+                <br />
+                <div *ngIf="vendingMachine.message">
+                    {{vendingMachine.message}}
+                </div>
+            </div> -->
+        </div>
+
+        <div class="control-panel">
+            <form>
+                <section>
+                    <h3>Buy a drink</h3>
+                    <div class="group">
+                        <label>Quantity</label>
+                        <input type="number" #quantity required>
+                    </div>
+                    <div class="group">
+                        <label>Payment</label>
+                        <input placeholder="$" type="number" #amount required>
+                    </div>
+                    <div class="group">
+                        <label>Change</label>
+                        <input placeholder="$" type="number" #change readonly>
+                    </div>
+                </section>
+                <button class="btn green text-white right shadow">Buy</button>
+            </form>
+            <form>
+                <section>
+                    <h3>Refill cans</h3>
+                    <label>Number of cans</label>
+                    <input type="number" #refillNo required>
+                </section>
+                <button class="btn yellow text-black right shadow">Refill</button>
+            </form>
+        </div>
+
+
+
+        <!-- <div>
+            <button (click)="purchase(1)"> Purchase one</button>
+            <button (click)="refill(6)">Refill with 6</button>
+        </div> -->
     </div>
-</div>
-
-
-<div>
-    <button (click)="purchase(1)"> Purchase one</button>
-    <button (click)="refill(6)">Refill with 6</button>
-</div>
