@@ -42,7 +42,7 @@ export class VendingViewComponent implements OnInit {
           this.updateReturnChange(x);
 
           // show hide notification as required
-          if (x.message) {
+          if (x && x.message) {
             this.toggleNotification();
           }
         })
@@ -58,6 +58,7 @@ export class VendingViewComponent implements OnInit {
   // Check if its a successful purchase. Then update the return change.
   updateReturnChange(x): void {
     if (
+      x &&
       x.message &&
       x.notificationType === NotificationTypes.success &&
       x.lastEvent === EventTypes.purchase

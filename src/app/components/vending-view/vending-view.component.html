@@ -39,7 +39,7 @@
                             readonly #rtnChange>
                     </div>
                 </section>
-                <button class="btn green text-white right shadow">Buy</button>
+                <button [disabled]="!purchaseForm.form.valid" class="btn green text-white right shadow">Buy</button>
             </form>
             <form #refillForm="ngForm" (ngSubmit)="onSubmitRefill()">
                 <section>

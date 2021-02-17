@@ -1,7 +1,7 @@
 import { Action, createReducer, on } from '@ngrx/store';
 
 import * as VendingActions from './../actions/vending.actions';
-import { VendingMachine, Purchase } from './../entities/models';
+import { VendingMachine } from './../entities/models';
 import * as Handlers from './../handlers';
 export const vendingSelectorKey = 'vending';
 

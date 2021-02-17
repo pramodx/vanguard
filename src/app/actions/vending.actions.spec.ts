@@ -1,7 +1,7 @@
 import * as fromVending from './vending.actions';
-
+import { Purchase } from './../entities/models';
 describe('loadVendings', () => {
   it('should return an action', () => {
-    expect(fromVending.loadVendings().type).toBe('[Vending] Load Vendings');
+    expect(fromVending.purchaseCan({}).type).toBe('[Vending] Purchase Can');
   });
 });
