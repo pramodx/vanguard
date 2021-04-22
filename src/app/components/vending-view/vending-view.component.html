@@ -1,37 +1,35 @@
-<div class="container" *ngIf="vendingMachine">
+<div class="container">
 
-    <div class="notification shadow" [ngClass]="
+    <!-- <div class="notification shadow" [ngClass]="
     {'success':vendingMachine.notificationType === 1, 
      'error': vendingMachine.notificationType === 2,
     'close': notificationHidden}">
         {{ vendingMachine.message}}
-    </div>
+    </div> -->
 
-    <h2 class="text-white">Funds: {{vendingMachine.funds | currency}}</h2>
+    <h2 class="text-white">Funds: {{funds$ | async}}</h2>
     <div class="row">
         <div class="vending-machine">
 
             <ng-container>
-                <div class="can" *ngFor="let can of counter(vendingMachine.cans)"></div>
+                <div class="can" *ngFor="let can of cans"></div>
             </ng-container>
             <div class="tag red text-white shadow">
-                Each Can {{vendingMachine.unitPrice | currency }}
+                Each Can {{unitPrice$ | async | currency}}
             </div>
         </div>
 
         <div class="control-panel">
-            <form #purchaseForm="ngForm" (ngSubmit)="onSubmitPurchase(purchaseForm)">
+            <form>
                 <section>
                     <h3>Buy a drink</h3>
                     <div class="group">
                         <label>Quantity</label>
-                        <input class="form-control" name="quantity" type="number" #quantity [(ngModel)]="purchaseQty"
-                            required>
+                        <input class="form-control" name="quantity" type="number" #quantity required>
                     </div>
                     <div class="group">
                         <label>Payment</label>
-                        <input class="form-control" name="amount" placeholder="$" type="number" #amount
-                            [(ngModel)]="minAmount" required>
+                        <input class="form-control" name="amount" placeholder="$" type="number" #amount required>
                     </div>
                     <div class="group">
                         <label>Change</label>
@@ -39,23 +37,15 @@
                             readonly #rtnChange>
                     </div>
                 </section>
-                <button [disabled]="!purchaseForm.form.valid" class="btn green text-white right shadow">Buy</button>
+                <button class="btn green text-white right shadow">Buy</button>
             </form>
-            <form #refillForm="ngForm" (ngSubmit)="onSubmitRefill()">
+            <form #refillForm>
                 <section>
                     <h3>Refill cans</h3>
                     <label>Number of cans</label>
-                    <input class="form-control" name="refillQty" type="number" min="1" [(ngModel)]="refillQty"
-                        #refill="ngModel" required />
+                    <input class="form-control" name="refillQty" type="number" min="1" required />
                 </section>
-                <button [disabled]="!refillForm.form.valid" class="btn yellow text-black right shadow">Refill</button>
+                <button class="btn yellow text-black right shadow">Refill</button>
             </form>
         </div>
-
-
-
-        <!-- <div>
-            <button (click)="purchase(1)"> Purchase one</button>
-            <button (click)="refill(6)">Refill with 6</button>
-        </div> -->
     </div>
