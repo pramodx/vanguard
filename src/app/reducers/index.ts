@@ -6,19 +6,11 @@ import * as Handlers from './../handlers';
 export const vendingSelectorKey = 'vending';
 
 export interface State {
-  vm: VendingMachine;
+  model: VendingMachine;
 }
 
-const initialiseState = (): VendingMachine => {
-  return {
-    cans: 1,
-    unitPrice: 1.2,
-    funds: 1.2,
-  };
-};
-
 export const initialState: State = {
-  vm: { cans: 1, unitPrice: 1.2, funds: 1.2 },
+  model: { cans: 1, unitPrice: 1.2, funds: 1.2 },
 };
 // export const initialState = initialiseState();
 // console.log('i', initialState);
@@ -28,19 +20,25 @@ export const vendingReducer = createReducer(
   on(VendingActions.vendingMachineInit, (state, action) => {
     return { ...state };
   }),
-  on(VendingActions.purchaseCan, (state, { purchase }) =>
-    Handlers.handlePurchase(state, purchase)
-  ),
-  on(VendingActions.refillVendingMachine, (state, { cans }) =>
-    Handlers.refill(state, cans)
-  )
+  on(VendingActions.purchaseCan, (state, { purchase }) => {
+    const updatedModel = Handlers.handlePurchase(state.model, purchase);
+    return Object.assign({}, state, {
+      model: updatedModel,
+    });
+  }),
+  on(VendingActions.refillVendingMachine, (state, { cans }) => {
+    const updatedModel = Handlers.refill(state.model, cans);
+    return Object.assign({}, state, {
+      model: updatedModel,
+    });
+  })
 );
 
 export function reducer(state: State | undefined, action: Action): any {
   return vendingReducer(state, action);
 }
 
-export const selectInit = (state: State) => state.vm;
-export const selectFunds = (state: State) => state.vm.funds;
-export const selectCans = (state: State) => state.vm.cans;
-export const selectUnitPrice = (state: State) => state.vm.unitPrice;
+export const selectInit = (state: State) => state.model;
+export const selectFunds = (state: State) => state.model.funds;
+export const selectCans = (state: State) => state.model.cans;
+export const selectUnitPrice = (state: State) => state.model.unitPrice;

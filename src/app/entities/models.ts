@@ -8,6 +8,10 @@ export class VendingMachine {
 }
 
 export class Purchase {
-  amount?: number; // amount paid by customer
-  quantity?: number; // number of cans ordered
+  amount: number; // amount paid by customer
+  quantity: number; // number of cans ordered;
+}
+
+export class Refill {
+  amount: number;
 }

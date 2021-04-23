@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Observable, Subscription } from 'rxjs';
-import { map } from 'rxjs/operators';
 
 import {
   State,
@@ -9,7 +8,7 @@ import {
   selectUnitPrice,
   selectFunds,
 } from './../../shared';
-import { VendingMachine } from './../../entities/models';
+import { VendingMachine, Purchase } from './../../entities/models';
 import * as VendingActions from './../../actions/vending.actions';
 import { NotificationTypes, EventTypes } from './../../entities/enums';
 
@@ -24,13 +23,8 @@ export class VendingViewComponent implements OnInit {
   cans$: Observable<number>;
   unitPrice$: Observable<number>;
 
-  VendingSubscription: Subscription;
-
-  // default model values
-  purchaseQty = 1;
-  minAmount = 1.2;
-  refillQty = 1;
-  returnChange = 0;
+  vmPurchaseModel: Purchase;
+  vmRefillModel: number;
 
   // for the notification popup
   notificationHidden = true;
@@ -41,8 +35,13 @@ export class VendingViewComponent implements OnInit {
   constructor(private store: Store<State>) {
     this.funds$ = store.select(selectFunds);
     this.unitPrice$ = store.select(selectUnitPrice);
-    this.cans$ = store.select(selectCans);
-    this.cans$.subscribe((num) => (this.cans = new Array(num)));
+    store.select(selectCans).subscribe((num) => (this.cans = new Array(num)));
+
+    this.vmPurchaseModel = {
+      amount: 0,
+      quantity: 0,
+    };
+    this.vmRefillModel = 0;
   }
 
   ngOnInit(): void {
@@ -55,13 +54,15 @@ export class VendingViewComponent implements OnInit {
   }
 
   // Dispatch purchase
-  onSubmitPurchase(f): void {
-    this.store.dispatch(VendingActions.purchaseCan(f.form.value));
+  onSubmitPurchase(): void {
+    this.store.dispatch(VendingActions.purchaseCan(this.vmPurchaseModel));
   }
 
   // Dispatch refill action
-  onSubmitRefill(): void {
-    this.store.dispatch(VendingActions.refillVendingMachine(this.refillQty));
-    this.refillQty = 1;
+  onRefill(): void {
+    this.store.dispatch(
+      VendingActions.refillVendingMachine(this.vmRefillModel)
+    );
+    // this.refillQty = 1;
   }
 }

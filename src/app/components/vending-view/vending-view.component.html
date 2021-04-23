@@ -7,7 +7,7 @@
         {{ vendingMachine.message}}
     </div> -->
 
-    <h2 class="text-white">Funds: {{funds$ | async}}</h2>
+    <h2 class="text-white">Funds: {{funds$ | async | currency}}</h2>
     <div class="row">
         <div class="vending-machine">
 
@@ -25,27 +25,29 @@
                     <h3>Buy a drink</h3>
                     <div class="group">
                         <label>Quantity</label>
-                        <input class="form-control" name="quantity" type="number" #quantity required>
+                        <input class="form-control" name="quantity" type="number" [(ngModel)]="vmPurchaseModel.quantity"
+                            required>
                     </div>
                     <div class="group">
                         <label>Payment</label>
-                        <input class="form-control" name="amount" placeholder="$" type="number" #amount required>
+                        <input class="form-control" name="amount" placeholder="$" type="number" required
+                            [(ngModel)]="vmPurchaseModel.amount">
                     </div>
                     <div class="group">
                         <label>Change</label>
-                        <input class="form-control" [value]="returnChange" class="grey" placeholder="$" type="text"
-                            readonly #rtnChange>
+                        <input class="form-control" name="rtnChange" class="grey" placeholder="$" type="text" readonly>
                     </div>
                 </section>
-                <button class="btn green text-white right shadow">Buy</button>
+                <button class="btn green text-white right shadow" (click)="onSubmitPurchase()">Buy</button>
             </form>
             <form #refillForm>
                 <section>
                     <h3>Refill cans</h3>
                     <label>Number of cans</label>
-                    <input class="form-control" name="refillQty" type="number" min="1" required />
+                    <input class="form-control" name="refillQty" type="number" min="1" required
+                        [(ngModel)]="vmRefillModel" />
                 </section>
-                <button class="btn yellow text-black right shadow">Refill</button>
+                <button class="btn yellow text-black right shadow" (click)="onRefill()">Refill</button>
             </form>
         </div>
     </div>
